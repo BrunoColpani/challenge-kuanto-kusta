@@ -13,6 +13,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CreateShoppingcartDto } from 'src/services/ShoppingCarts/dto/create-shoppingcart.dto';
 import { UpdateShoppingcartDto } from 'src/services/ShoppingCarts/dto/update-shoppingcart.dto';
+import { CreateProductsCartDto } from 'src/services/productsShoppingCart/dto/create-products-cart.dto';
 
 @Controller('shopping-cart')
 export class ShoppingCartController {
@@ -58,5 +59,20 @@ export class ShoppingCartController {
   @Delete(':id')
   remove(@Param('id') id: number) {
     return this.communicationClient.send('shopping-cart-delete', id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('products')
+  addProductCart(@Body() createProductShoppingCartDto: CreateProductsCartDto) {
+    return this.communicationClient.send(
+      'proudct-shopping-cart-add',
+      createProductShoppingCartDto,
+    );
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('products/:id')
+  removeProductCart(@Param('id') id: number) {
+    return this.communicationClient.send('proudct-shopping-cart-delete', id);
   }
 }

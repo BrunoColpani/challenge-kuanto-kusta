@@ -8,7 +8,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Users } from 'src/entities/Users/user.entity';
-import { Products } from '../Products/products.entity';
+import { ProductsShoppingCart } from '../ProductsShoppingcart/products-shopping-cart.entity';
 
 @Index('shopping_carts_pkey', ['shoppingCartId'], { unique: true })
 @Entity('shopping_carts', { schema: 'public' })
@@ -32,6 +32,6 @@ export class ShoppingCarts {
   @JoinColumn([{ name: 'user_id', referencedColumnName: 'id' }])
   user: Users;
 
-  @OneToMany(() => Products, (Products) => Products.shoppingCart)
-  products: Products[];
+  @OneToMany(() => ProductsShoppingCart, (Products) => Products.shoppingCart)
+  products: ProductsShoppingCart[];
 }
