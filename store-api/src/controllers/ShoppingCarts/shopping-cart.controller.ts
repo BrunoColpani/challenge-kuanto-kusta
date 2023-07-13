@@ -50,7 +50,7 @@ export class ShoppingCartController {
   ) {
     return this.communicationClient.send('shopping-cart-update', {
       shoppingCartId: id,
-      updateShoppingCartDto,
+      ...updateShoppingCartDto,
     });
   }
 
