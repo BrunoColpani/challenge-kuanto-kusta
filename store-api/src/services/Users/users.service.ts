@@ -55,7 +55,7 @@ export class UsersService {
         password: passowrdHash,
       });
 
-      return this._usersReposytory.save(user);
+      return await this._usersReposytory.save(user);
     } catch (error) {
       return error.response;
     }
