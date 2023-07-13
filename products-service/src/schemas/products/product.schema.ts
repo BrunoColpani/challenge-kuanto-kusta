@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-export const Products = new mongoose.Schema({
+export const ProductSchema = new mongoose.Schema({
   productId: String,
   price: Number,
 });

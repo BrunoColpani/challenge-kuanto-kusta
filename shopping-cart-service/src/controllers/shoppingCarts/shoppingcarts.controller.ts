@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Put, Delete, Param } from '@nestjs/common';
-import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
+import { Controller } from '@nestjs/common';
+import { EventPattern, Payload } from '@nestjs/microservices';
 import { ShoppingcartsService } from '../../services/shoppingCarts/shoppingcarts.service';
 import { CreateShoppingcartDto } from '../../services/shoppingCarts/dto/create-shoppingcart.dto';
-import { UpdateShoppingcartDto } from '../../services/shoppingCarts/dto/update-shoppingcart.dto';
+import { CreateProductsCartDto } from 'src/services/productsShoppingCart/dto/create-products-cart.dto';
 
 @Controller('shopping-carts')
 export class ShoppingcartsController {
@@ -33,5 +33,19 @@ export class ShoppingcartsController {
   @EventPattern('shopping-cart-delete')
   remove(@Payload() id: number) {
     return this.shoppingcartsService.remove(id);
+  }
+
+  @EventPattern('proudct-shopping-cart-add')
+  addProductCart(
+    @Payload() createProductShoppingcartDto: CreateProductsCartDto,
+  ) {
+    return this.shoppingcartsService.addProductCart(
+      createProductShoppingcartDto,
+    );
+  }
+
+  @EventPattern('proudct-shopping-cart-delete')
+  removeProductCart(@Payload() id: number) {
+    return this.shoppingcartsService.removeProductCart(id);
   }
 }

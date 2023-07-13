@@ -8,14 +8,14 @@ import {
 } from 'typeorm';
 import { ShoppingCarts } from '../ShoppingCarts/shopping-cart.entity';
 
-@Index('products_pkey', ['productId'], { unique: true })
-@Entity('products', { schema: 'public' })
-export class Products {
+@Index('products_shopping_carts_pkey', ['productId'], { unique: true })
+@Entity('products_shopping_carts', { schema: 'public' })
+export class ProductsShoppingCart {
   @PrimaryGeneratedColumn({ type: 'integer', name: 'id' })
   id: number;
 
-  @Column('integer', { name: 'product_id' })
-  productId: number;
+  @Column('character varying', { name: 'product_id', length: 24 })
+  productId: string;
 
   @Column('integer', { name: 'shopping_cart_id' })
   shoppingCartId: number;

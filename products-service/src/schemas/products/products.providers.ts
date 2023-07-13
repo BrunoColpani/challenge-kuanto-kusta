@@ -1,11 +1,11 @@
 import { Connection } from 'mongoose';
-import { Products } from './product.entity';
+import { ProductSchema } from './product.schema';
 
 export const productsProviders = [
   {
     provide: 'PRODUCT_MODEL',
     useFactory: (connection: Connection) =>
-      connection.model('Product', Products),
+      connection.model('Product', ProductSchema),
     inject: ['DATABASE_CONNECTION'],
   },
 ];

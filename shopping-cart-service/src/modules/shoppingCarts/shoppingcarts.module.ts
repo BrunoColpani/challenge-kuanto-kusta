@@ -4,7 +4,7 @@ import { ShoppingcartsController } from '../../controllers/shoppingCarts/shoppin
 import { shoppingCartProviders } from 'src/entities/ShoppingCarts/shopping-cart.provider';
 import { DatabaseModule } from 'src/database/database.module';
 import { ConfigModule } from '@nestjs/config';
-import { productsProviders } from 'src/entities/Products/products.entity.provider';
+import { ProductsShoppingCartProviders } from 'src/entities/ProductsShoppingcart/products.entity.provider';
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { productsProviders } from 'src/entities/Products/products.entity.provide
   providers: [
     ShoppingcartsService,
     ...shoppingCartProviders,
-    ...productsProviders,
+    ...ProductsShoppingCartProviders,
   ],
 })
 export class ShoppingcartsModule {}

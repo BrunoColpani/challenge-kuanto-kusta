@@ -5,7 +5,7 @@ export const databaseProviders = [
     provide: 'DATABASE_CONNECTION',
     useFactory: (): Promise<typeof mongoose> =>
       mongoose.connect(
-        'mongodb://admin:KuantoKusta%402023@localhost:27017/?retryWrites=true&serverSelectionTimeoutMS=5000&connectTimeoutMS=10000&authSource=admin&authMechanism=SCRAM-SHA-256',
+        'mongodb+srv://admim:ZARfg08SdH4nK3mq@cluster0.rpv3a34.mongodb.net/?retryWrites=true&w=majority',
       ),
   },
 ];
