@@ -1,5 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config();
 import { ConfigService } from '@nestjs/config';
 import { DataSource } from 'typeorm';
+import { CreateUsersTable1689293814345 } from './migrations/1689293814345-createUsersTable';
+import { CreateShoppingCarts1689293835557 } from './migrations/1689293835557-createShoppingCarts';
+import { CreateProductsShoppingCarts1689293849337 } from './migrations/1689293849337-createProductsShoppingCarts';
 
 export const databaseProviders = [
   {
@@ -30,5 +35,10 @@ export const dataSource = new DataSource({
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
   entities: [__dirname + '/../**/*.entity.js'],
+  migrations: [
+    CreateUsersTable1689293814345,
+    CreateShoppingCarts1689293835557,
+    CreateProductsShoppingCarts1689293849337,
+  ],
   synchronize: false,
 });
