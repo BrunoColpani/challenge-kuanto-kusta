@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  store-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: store-api
+    depends_on:
+      - postgres-store
+    entrypoint: sh -c 'yarn install --frozen-lockfile && yarn start:dev'
+    volumes:
+      - .:/app/
+      - /app/node_modules
+    ports:
+      - 3005:3005
+    networks:
+      - store-api-net
+
+  postgres-store:
+    image: postgres:latest
+    container_name: postgres-store
+    restart: always
+    environment:
+      POSTGRES_HOST: ${DATABASE_HOST}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+      PG_DATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    networks:
+      - store-api-net
+    volumes:
+      - postgres-store-data:/var/lib/postgresql/data
+
+networks:
+  store-api-net:
+
+volumes:
+  postgres-store-data:

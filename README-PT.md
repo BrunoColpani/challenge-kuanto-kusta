@@ -17,6 +17,12 @@
 ---
 
 ## ⚙️ Funcionalidades
+- [x] User registration:
+
+{
+  "email": "teste@email.com",
+  "password": "abcde123"
+}
 
 - [x] Cadastro de usuários:
   - [x] userName, email e password.
